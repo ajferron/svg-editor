@@ -1,0 +1,219 @@
+#overlay {
+    display: none;
+    position: fixed;
+    background-color: var(--b1);
+    opacity: 0.25;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s;
+    z-index: 25;
+}
+
+.dialog-box {
+    display: none;
+    position: absolute;
+    font-family: 'Roboto';
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 25px rgba(120, 120, 120, 0.15);
+    z-index: 30;
+}
+
+#overlay.enabled,
+.dialog-box.enabled {
+    display: inline-block;
+}
+
+.dialog-box .dialog-header {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 16px;
+    color: var(--b4);
+    padding: 10px 15px;
+    background-color: var(--b4);
+    border-radius: 10px 10px 0 0;
+}
+
+.dialog-box .dialog-header:hover {
+    cursor: move;
+}
+
+.dialog-box .dialog-header h4 {
+    font: inherit;
+    color: white;
+}
+
+.dialog-box .dialog-header button {
+    background-color: transparent;
+}
+
+
+/* UPLOAD dialog */
+
+#upload-dialog {
+    height: 105px;
+}
+
+#upload-dialog form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+#upload-dialog form button img {
+    transform: scale(0.8);
+    transition: transform 0.25s ease;
+}
+
+#upload-dialog form button:hover img {
+    transform: scale(0.9);
+}
+
+#upload-dialog form input#svg-file {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+#upload-dialog form label {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5px 5px 2.5px 7.5px;
+    border: 2px solid var(--b2);
+    border-radius: 10px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--b4);
+    min-width: 135px;
+    white-space: nowrap;
+    background-color: var(--b1);
+    transition: background 0.5s ease;
+}
+
+#upload-dialog form label:hover {
+    background-color: var(--b2);
+    cursor: pointer;
+}
+
+#upload-dialog form label span {
+    font: inherit;
+}
+
+#upload-dialog form label img {
+    transform: scale(0.65);
+    margin-left: 7.5px;
+}
+
+#upload-dialog form button {
+    margin-left: 15px;
+}
+
+
+/* ADD COMPONENT dialog */
+
+#add-component-dialog form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+#add-component-dialog #shape-dropdown .dd-selected, 
+#add-component-dialog #shape-dropdown .dd-options div {
+    width: 200px;
+}
+
+#add-component-dialog .attr-form {
+    display: none;
+}
+
+#add-component-dialog .attr-form button {
+    margin-top: 10px;
+}
+
+#new-file-dialog button img,
+#add-component-dialog .attr-form button img {
+    transition: transform 0.25s ease;
+}
+
+#add-component-dialog .attr-form button:hover img {
+    transform: scale(1.05);
+}
+
+#add-component-dialog .attr-form.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 17.5px;
+    padding-top: 15px;
+    border-top: 1px solid var(--b3);
+    width: 100%;
+}
+
+#add-component-dialog .attr-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 15px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    color: var(--b4);
+    width: 100%;
+}
+
+#add-component-dialog .attr-wrapper div {
+    font: inherit;
+}
+#add-component-dialog .attr-wrapper label {
+    font: inherit;
+}
+
+#new-file-dialog input,
+#add-component-dialog .attr-wrapper input {
+    display: inline-block;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--b4);
+    margin-left: 5px;
+    outline: none;
+    border: none;
+    border-bottom: 1.25px solid var(--b4);
+    width: 50px;
+}
+
+
+#new-file-dialog form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+#new-file-dialog input {
+    width: 100px;
+    white-space: nowrap;
+    margin-right: 15px;
+}
+
+#new-file-dialog button img {
+    transform: scale(0.8)
+}
+
+#new-file-dialog button:hover img {
+    transform: scale(0.9)
+}

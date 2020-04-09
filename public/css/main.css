@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+    --b1: #F5F6FA;
+    --b2: #E6E9F2;
+    --b3: #C8CDD9;
+    --b4: #666D80;
+}
+
+body {
+    /* display: flex; */
+    /* flex-direction: row; */
+    overflow: hidden;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+button {
+    background: transparent;
+	border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#file-panel, #view-panel {
+    display: inline-flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+#file-panel {
+    width: 50%;
+    overflow: auto;
+    padding: 0 0 25px 25px;
+    background-color: white;
+    scrollbar-width: thin;
+}
+
+#view-panel {
+    position: fixed;
+    right: 0px !important;
+    width: 50%;
+    padding: 25px;
+    box-sizing: border-box;
+    background-color: var(--b1);
+    box-shadow: -5px 0px 15px rgba(102, 109, 128, 0.2);
+    z-index: 20;
+}
+
+header.panel-header {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 25px;
+    margin-bottom: 5px;
+    justify-content: space-between;
+    color: var(--b4);
+    width: 100%;
+    user-select: none;
+    -moz-user-select: none;
+}
+
+h1.panel-title {
+    font-size: 42px;
+    font-weight: 300;
+    white-space: nowrap;
+    margin-right: 5%;
+    color: inherit;
+    height: 100%;
+}
+
+.header-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+button.view-button,
+button.header-button {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: x;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0 20px;
+    font-family: 'Roboto';
+    font-size: 16px;
+	color: var(--b4);
+    height: 40px;
+    border-radius: 20px;
+    vertical-align: middle;
+    transition: background 0.25s;
+}
+
+button.view-button img,
+button.header-button img {
+    margin-left: 10px;
+}
+
+button#refresh, button#save, button#close {
+    background-color: transparent;
+}
+
+::placeholder {
+    opacity: 0.5;
+}

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SVG Editor</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple SVG editor">
+    <meta name="author" content="Alvin Ferron">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/file-panel.css">
+    <link rel="stylesheet" type="text/css" href="/css/view-panel.css">
+    <link rel="stylesheet" type="text/css" href="/css/select.css">
+    <link rel="stylesheet" type="text/css" href="/css/dialog.css">
+    <link rel="stylesheet" type="text/css" href="/css/component-view.css">
+</head>
+<body>
+    <template id="file-row-template">
+        <tr>
+            <td id="thumb"> 
+                <a href="" download> <img src=""> </a>
+            </td>
+            <td id="filename">
+                <a href="" download> </a>
+            </td>
+            <td id="filesize"></td>
+            <td id="attrs">
+                <p id="num-rects"></p>
+                <p id="num-circles"></p>
+                <p id="num-paths"></p>
+                <p id="num-groups"></p>
+            </td>
+        </tr>
+    </template>
+
+    <template id="component-row-template">
+        <div class="component-wrapper">
+            <div class="field-wrapper">
+                <div class="component-name-wrapper">
+                    <h5 class="component-name"></h5>
+                </div>
+
+                <div class="component-attrs">
+                    <div class="required-attrs">
+
+                    </div>
+                    <div class="other-attrs">
+
+                    </div>
+
+                    <button class="add-attribute" type="button">
+                        <img src="./icons/plus.svg">
+                        Attribute
+                    </button>
+                </div>
+
+                <div class="component-scale">
+                    <input class="scale-input" type="text" maxlength="1" placeholder="1">
+                    <h5>x</h5>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="attribute-template">
+        <div class="attr-wrapper">
+            <h5 class="attr-name"></h5>
+            <input class="attr-value" type="text">
+        </div>
+    </template>
+
+    <div id="upload-dialog" class="dialog-box">
+        <header class="dialog-header">
+            <h4 class="dialog-title">Upload SVG</h4>
+            <button class="close-dialog">
+                <img src="./icons/close-sm.svg">
+            </button>
+        </header>
+
+        <div class="dialog-content">
+            <form>
+                <input id="svg-file" type="file" accept=".svg">
+                <label for="svg-file">
+                    <span>Choose SVG File</span>
+                    <img src="./icons/add-file.svg">
+                </label>
+                <!-- <input type="submit" value="clickable button"> -->
+                <button id="confirm-upload" type="submit">
+                    <img src="./icons/circle-check.svg">
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-component-dialog" class="dialog-box">
+        <header class="dialog-header">
+            <h4 class="dialog-title">Add Component</h4>
+            <button class="close-dialog">
+                <img src="./icons/close-sm.svg">
+            </button>
+        </header>
+
+        <div class="dialog-content">
+            <form>
+                <div id="shape-dropdown" class="dropdown">
+                    <select id="shape-list" >
+                        <option value="0">Type</option>
+                        <option value="1">Rectangle</option>
+                        <option value="2">Circle</option>
+                    </select>
+                </div>
+
+                <div id="empty-attrs" class="attr-form"> </div>
+
+                <div id="rect-attrs" class="attr-form">
+                    <div class="attr-wrapper">
+                        <div>
+                            <label class="attr-label">x :</label>
+                            <input id="x-attr" class="attr-input" type="text">
+                        </div>
+                        <div>
+                            <label class="attr-label">y :</label>
+                            <input id="y-attr" class="attr-input" type="text">
+                        </div>
+                    </div>
+
+                    <div class="attr-wrapper">
+                        <div>
+                            <label class="attr-label">w :</label>
+                            <input id="w-attr" class="attr-input" type="text">
+                        </div>
+                        <div>
+                            <label class="attr-label">h :</label>
+                            <input id="h-attr" class="attr-input" type="text">
+                        </div>
+                    </div>
+
+                    <button id="add-rect" type="submit">
+                        <img src="./icons/circle-plus-h.svg">
+                    </button>
+                </div>
+
+                <div id="circle-attrs" class="attr-form">
+                    <div class="attr-wrapper">
+                        <div>
+                            <label for="cx-attr" class="attr-label">cx :</label>
+                            <input id="cx-attr" class="attr-input" type="text">
+                        </div>
+                        <div>
+                            <label for="cy-attr" class="attr-label">cy :</label>
+                            <input id="cy-attr" class="attr-input" type="text">
+                        </div>
+                    </div>
+
+                    <div class="attr-wrapper">
+                        <div>
+                            <label for="r-attr" class="attr-label">r :</label>
+                            <input id="r-attr" class="attr-input" type="text">
+                        </div>
+                    </div>
+
+                    <button id="add-circle" type="submit">
+                        <img src="./icons/circle-plus-h.svg">
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="view-components-dialog" class="dialog-box">
+        <header class="dialog-header">
+            <h4 class="dialog-title">SVG Components</h4>
+            <button class="close-dialog">
+                <img src="./icons/close-sm.svg">
+            </button>
+        </header>
+
+        <div class="dialog-content">
+            <form id="component-table">
+                <header id="component-table-header">
+                    <h5 id="components-header">Component</h5>
+                    <h5 id="attributes-header">Attributes</h5>
+                    <h5 id="scale-header">Scale</h5>
+                </header>
+
+                <div class="svg-component"></div>
+                <div class="rect-components"></div>
+                <div class="circle-components"></div>
+                <div class="path-components"></div>
+                <div class="group-components"></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-attribute-dialog" class="dialog-box">
+        <header class="dialog-header">
+            <h4 class="dialog-title">Add Attribute</h4>
+            <button class="close-dialog">
+                <img src="./icons/close-sm.svg">
+            </button>
+        </header>
+
+        <div class="dialog-content">
+            <form>
+                <input id="new-attr-name" class="attr-input" type="text" placeholder="name">
+                :
+                <input id="new-attr-value" class="attr-input" type="text" placeholder="value">
+
+                <button type="submit">
+                    <img src="./icons/circle-plus-h.svg">
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="new-file-dialog" class="dialog-box">
+        <header class="dialog-header">
+            <h4 class="dialog-title">New File</h4>
+            <button class="close-dialog">
+                <img src="./icons/close-sm.svg">
+            </button>
+        </header>
+
+        <div class="dialog-content">
+            <form>
+                <input id="new-filename" type="text" placeholder="filename.svg">
+
+                <button id="add-attribute" type="submit">
+                    <img src="./icons/circle-check.svg">
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="overlay" class="enabled"> </div>
+
+
+    <div id="file-panel">
+        <header class="panel-header">
+            <h1 class="panel-title">SVG Files</h1>
+
+            <div class="header-button-wrapper">
+                <button id="refresh">
+                    <img src="./icons/refresh.svg">
+                </button>
+
+                <button id="upload-svg" class="header-button">
+                    Upload SVG
+                    <img src="./icons/upload.svg">
+                </button>
+
+                <button id="create-svg" class="header-button">
+                    Create SVG
+                    <img src="./icons/plus.svg">
+                </button>
+
+                <div class="padding"></div>
+            </div>
+        </header>
+
+        <div class="file-table-wrapper">
+            <table id="file-table">
+                <tr>
+                    <th>Image</th>
+                    <th>File Name</th>
+                    <th>File Size</th>
+                    <th># of Components</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <div id="view-panel">
+        <form id="svg-form">
+            <header class="panel-header">
+                <h1 class="panel-title">Image View</h1>
+
+                <div class="header-button-wrapper">
+                    <div id="file-dropdown" class="dropdown">
+                        <select id="file-list" >
+                            <option value="SVG Files">SVG Files</option>
+                        </select>
+                    </div>
+
+                    <button id="save" type="button">
+                        <img src="./icons/save.svg">
+                    </button>
+                </div>
+
+                <button id="close">
+                    <img src="./icons/close.svg">
+                </button>
+            </header>
+
+            <div id="svg-view">
+                <!-- <div id="view-dimensions"></div> -->
+                <img id="svg-image">
+            </div>
+
+            <div id="svg-data" class="disabled">
+                <div class="data-title-wrapper">
+                    <h4 class="data-title"> Title </h5>
+                </div>
+                <div class="data-wrapper">
+                    <div class="textarea-border">
+                        <textarea id="title-field" rows="1" placeholder="empty" maxlength="256"></textarea>
+                    </div>
+                </div>
+                
+                <div class="data-title-wrapper">
+                    <h4 class="data-title"> Description </h5>
+                </div>
+                <div class="data-wrapper">
+                    <div class="textarea-border">
+                        <textarea id="desc-field" rows="1" placeholder="empty" maxlength="256"></textarea>
+                    </div>
+                </div>
+
+                <div id="component-buttons">
+                    <button id="view-components" class="view-button" type="button">
+                        View Components
+                        <img src="./icons/eye.svg">
+                    </button>
+    
+                    <button id="add-component" class="view-button" type="button">
+                        Add Component
+                        <img src="./icons/plus.svg">
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="/js/index.js"></script>
+    <script src="/js/select.js"></script>
+    <script src="/js/dialog.js"></script>
+    <script src="/js/resize.js"></script>
+    <!-- <script src="/js/view.js"></script> -->
+    <script src="/js/log.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

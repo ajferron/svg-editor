@@ -1,0 +1,286 @@
+#view-components-dialog {
+    background-color: var(--b1);
+    width: 50%;
+    height: 90%;
+    overflow: hidden;
+}
+
+#view-components-dialog .dialog-header {
+    position: sticky;
+    /* width: 50%; */
+    z-index: 15;
+}
+
+#view-components-dialog .dialog-content {
+    height: calc(100% - 40px);
+    overflow-y: auto;
+}
+
+#view-components-dialog form {
+    display: block;
+    padding: 10px;
+    height: 100%;
+}
+
+#component-table {
+    box-sizing: border-box;
+}
+
+#component-table-header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: 10px;
+    margin: 5px 0 15px 0;
+    border-bottom: 1px solid var(--b3);
+    z-index: 10;
+}
+
+#component-table-header h5 {
+    font-size: 16px;
+    color: var(--b4);
+}
+
+#component-table-header #components-header {
+    margin-left: 10px;
+    width: 25%;
+}
+
+#component-table-header #attributes-header {
+    margin-left: 15px;
+    width: 65%;
+}
+
+#component-table-header #scale-header {
+    margin-right: 10px;
+    text-align: end;
+    width: 10%;
+}
+
+.svg-component .component-scale,
+.path-components .component-scale,
+.group-components .component-scale {
+    display: none;
+}
+
+.component-wrapper {
+    background-color: white;
+    border-radius: 7.5px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    overflow: hidden;
+}
+
+.component-wrapper .field-wrapper {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    color: var(--b4);
+    padding: 10px 15px 10px 0;
+    width: 100%;
+}
+
+.component-wrapper .component-wrapper {
+    display: none;
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.component-wrapper.open-group .component-wrapper {
+    display: block;
+}
+
+.component-wrapper .field-wrapper.child {
+    border-top: 1px solid var(--b3);
+}
+
+.component-wrapper .field-wrapper.child .add-attribute {
+    display: none;
+}
+
+.component-name-wrapper {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font: inherit;
+    width: 25%;
+    -moz-user-select: none; 
+    user-select: none;
+}
+
+.component-name-wrapper:before {
+    content: url('../icons/chevron-right.svg');
+    margin-top: -2px;
+}
+
+.component-wrapper.open-group .component-name-wrapper:before {
+    content: url('../icons/chevron-down.svg');
+}
+
+.field-wrapper.parent .component-name:hover  {
+    cursor: pointer;
+}
+
+.field-wrapper.parent .component-name-wrapper:before  {
+    opacity: 1;
+}
+
+.field-wrapper.parent .component-name-wrapper:hover:before {
+    cursor: pointer;
+}
+
+.component-name-wrapper .component-name {
+    margin-left: 10px;
+    font: inherit;
+    font-family: 'Roboto';
+}
+
+.component-name-wrapper:before  {
+    opacity: 0.5;
+}
+
+
+.component-attrs {
+    display: inline-block;
+    font: inherit;
+    width: 65%;
+}
+
+.component-attrs .add-attribute {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font: inherit;
+    font-family: 'Roboto';
+    font-size: 14px;
+    color: var(--b4);
+    padding: 5px 10px;
+    margin-left: 10px;
+    background-color: var(--b1);
+    border-radius: 50px;
+    transition: background 0.25s;
+}
+
+.component-attrs .add-attribute:hover {
+    background-color: var(--b2);
+}
+
+.component-attrs .add-attribute img {
+    margin-right: 5px;
+    transform: scale(0.8);
+}
+
+.component-attrs .required-attrs,
+.component-attrs .other-attrs {
+    font: inherit;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.component-attrs .attr-wrapper {
+    display: inline-block;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font: inherit;
+}
+
+.component-attrs .attr-wrapper input {
+    max-width: 250px;
+}
+
+.component-attrs .attr-wrapper.path-attr {
+    width: 100%;
+}
+
+.component-attrs .attr-wrapper.path-attr input {
+    width: 90%;
+    max-width: 90%;
+    text-align: start;
+}
+
+.component-attrs .attr-wrapper h5.attr-name {
+    display: inline-block;
+    font: inherit;
+}
+
+.component-attrs input {
+    font-weight: 300 !important;
+}
+
+.component-scale input,
+.component-attrs input {
+    display: inline-block;
+    text-align: center;
+    font: inherit;
+    color: var(--b4);
+    outline: none;
+    border: none;
+    background-color: transparent;
+    margin-left: -5px;
+    border-bottom: 1px solid var(--b4);
+}
+
+.component-scale {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: flex-start;
+    font: inherit;
+    width: 10%;
+}
+
+.component-scale input {
+    display: inline-block;
+    width: 15px;
+    height: 22.5px;
+}
+
+.component-scale h5 {
+    display: inline-block;
+    font: inherit;
+}
+
+
+
+#add-attribute-dialog {
+    font-family: 'Roboto';
+    font-size: 16px;
+}
+
+#add-attribute-dialog form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 10px;
+}
+
+#add-attribute-dialog input {
+    display: inline-block;
+    font: inherit;
+    font-size: 16px;
+    color: var(--b4);
+    text-align: center;
+    margin-left: 5px;
+    outline: none;
+    border: none;
+    border-bottom: 1.25px solid var(--b4);
+    width: 75px;
+}
+
+#add-attribute-dialog img {
+    transform: scale(0.8);
+    transition: transform 0.25s ease;
+}
+
+#add-attribute-dialog button {
+    margin-left: 10px;
+}
+
+#add-attribute-dialog button:hover img {
+    transform: scale(0.9);
+}

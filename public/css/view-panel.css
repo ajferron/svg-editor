@@ -1,0 +1,140 @@
+#view-panel form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+button#save {
+    display: none;
+    margin-left: 5%;
+    height: 25px;
+    pointer-events: none;
+}
+
+button#save.enabled {
+    display: block;
+    pointer-events: all;
+}
+
+button#close {
+    margin-left: 5%;
+    height: 25px;
+}
+
+#file-dropdown .dd-selected, 
+#file-dropdown .dd-options div {
+    min-width: 175px;
+}
+
+#svg-view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 2px solid var(--b4);
+    border-radius: 10px;
+    margin-bottom: 25px;
+    padding: 10px;
+    width: 100%;
+    height: calc(100% - 50px);
+}
+
+#svg-view #svg-image {
+    width: 100%;
+}
+
+#view-wrapper.min #svg-view img {
+    transition: width 0.5s;
+}
+
+#svg-view #view-dimensions {
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--b4);
+    opacity: 0.75;
+    position: absolute;
+    margin: 10px;
+    right: 0;
+    top: 0;
+}
+
+#svg-data {
+    display: inline-block;
+    width: 100%;
+    pointer-events: all;
+}
+
+#svg-data.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+#svg-data .data-title-wrapper {
+    display: inline-block;
+    position: relative;
+    top: 8px;
+    padding: 0 5px;
+    margin-left: 12.5px;
+    background-color: var(--b1);
+}
+
+#svg-data .data-title {
+    font-size: 14px;
+    color: var(--b4);
+}
+
+#svg-data .data-wrapper {
+    box-sizing: border-box;
+    padding: 7.5px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1.5px solid var(--b3);
+    border-radius: 10px;
+}
+
+#svg-data .data-wrapper textarea {
+    box-sizing: border-box;
+    resize: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--b4);
+    width: 98%;
+    height: 95%;
+    white-space: nowrap;
+    border: none; 
+    overflow-x: auto;
+    overflow-y: hidden;
+    z-index: 10;
+}
+
+#svg-data .data-wrapper .textarea-border {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 1.75px solid var(--b4); 
+    border-radius: 5px;
+    z-index: 15;
+    background-color: white;
+    overflow: hidden;
+}
+
+#component-buttons {
+    display: flex;
+    flex-wrap: row;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+#component-buttons button.view-button {
+    align-items: center;
+    justify-content: center;
+    width: 47.5%;
+	background-color: var(--b2);
+}
+
+#component-buttons button.view-button:hover {
+	background-color: var(--b3);
+}

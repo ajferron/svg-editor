@@ -1,0 +1,73 @@
+.dropdown {
+    position: relative;
+}
+  
+.dropdown select {
+    display: none;
+}
+  
+.dd-selected {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--b2);
+    border-radius: 20px;
+    height: 40px;
+}
+
+.dd-selected:after {
+    margin-left: 10px;
+    content: url('../icons/chevron-down.svg');
+    transform: scale(0.8);
+}
+
+.dd-selected.dd-arrow-active:after {
+    content: url('../icons/chevron-up.svg');
+}
+
+.dd-selected.dd-arrow-active {
+    border-radius: 20px 20px 0 0;
+}
+
+.dd-selected, .dd-options div {
+    box-sizing: border-box;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--b4);
+    user-select: none;
+    cursor: pointer;
+}
+
+.dd-options div:hover, .dd-selected-opt {
+    background-color: var(--b3);
+    font-weight: 400;
+}
+
+.dd-options {
+    display: inline-flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: var(--b2);
+    border-radius: 0 0 20px 20px;
+    border-top: 1.25px solid var(--b3);
+    font-size: 16px;
+    font-weight: 300;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+  
+.dd-options div {
+    display: inline-block;
+}
+
+.dd-options .dd-last {
+    border-radius: 0 0 20px 20px;
+}
+
+.dd-hide {
+    display: none;
+}
