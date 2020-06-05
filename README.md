@@ -1,9 +1,13 @@
 # SVG Editor
-### CIS 2750 Assignments 1-4
 
-A full stack application to create and edit SVG images. Node.js is used to handle backend functionality, SVG parsing is implemented with C, front end created with Javascript, HTML & CSS
+*Submitted to CIS 2750*
 
-#### Functionality
+A simple web application for creating and editing SVG images.\
+Backend built with Node and Express.js, SVG parsing implemented with C, front end created with JQuery, HTML & CSS
+
+<br>
+
+## Functionality
  - Upload SVG images
  - Create new SVG images
  - Download SVG images
@@ -12,14 +16,18 @@ A full stack application to create and edit SVG images. Node.js is used to handl
  - Add/remove attributes to SVG components
  - Add shapes to SVG images
 
+<br> 
+
+## Screenshots
+
 <p align="center">
-<img width="1538" alt="Frame 1" src="https://user-images.githubusercontent.com/45947696/78927736-6273c680-7a6d-11ea-8a16-2b9f99038d50.png"> 
+<img alt="" src="https://user-images.githubusercontent.com/45947696/83781828-0e482580-a65d-11ea-8afd-71b299c9f5bc.png">
 </p>
 
 <p align="center">
-<img width="1538" alt="Frame 2" src="https://user-images.githubusercontent.com/45947696/78927734-61db3000-7a6d-11ea-99b8-5bf243e8afb7.png">
+<img alt="" src="https://user-images.githubusercontent.com/45947696/83781833-0f795280-a65d-11ea-802f-a09fc89d1959.png">
 </p>
 
 <p align="center">
-<img width="1538" alt="Frame 3" src="https://user-images.githubusercontent.com/45947696/78927731-5f78d600-7a6d-11ea-8e20-38429ed68224.png">
+<img alt="" src="https://user-images.githubusercontent.com/45947696/83781839-11431600-a65d-11ea-9477-43214ba4174c.png"> 
 </p>
